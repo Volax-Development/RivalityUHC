@@ -1,0 +1,10 @@
+name: VolaxUHC
+main: fr.volax.game.GMain
+version: 1.0
+description: UHC Game voovovlax
+author: Volax
+commands:
+  hostsay:
+    description: command host
+  start:
+    description: Start command

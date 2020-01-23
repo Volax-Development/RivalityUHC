@@ -1,0 +1,66 @@
+# Nombre de joueurs avant le début
+min_player_to_start: 1
+# Temps avant le début de la parti quand le nombre de joueurs est atteint
+start_timer: 15
+# Temps de la parti en secondes
+game_time: 1800
+# Temps de la vulnerabilité en secondes
+fin_vulne_time: 30
+# Temps avant le début du pvp en secondes ( Exemple : 600 = 10 minutes, il y a 10 minutes avant le début du pvp )
+debut_pvp: 600
+# Temps avant le début de l'avancement de la bordure  Exemple : 900 = 15 minutes, il y a 15 minutes avant le début de l'avancement de la bordure )
+debut_bordure: 40
+
+messages:
+  join1: "[+] %player% vient de rejoindre le jeu [%player_in_game%/%max_player%]"
+  join2: "[+] %player% vient de rejoindre le jeu !"
+  quit1: "[-] %player% vient de quitter le jeu [%player_in_game%/%max_player%]"
+  quit2: "[-] %player% vient de quitter le jeu !"
+  end_game: "Fin du jeu"
+  death: "Le joueur %death_player% est mort !"
+  pperms: "&cVous n'avez pas la permission d'executer cette commande !"
+  host_say: "&6[Host] &6%host_name%&r %message%"
+  game_already_start: "Le jeu a déjà commencé, vous êtes désormais en spectateur"
+
+  # Messages de help pour les commandes
+  help:
+    host_say: "&7Execution : /hostsay <message>"
+
+  # Messages / Titles / ActionsBar pour les events PvP
+  pvp:
+    30: "PERIODE DE PVP ACTIVE DANS 30 SECONDES !"
+    debut: "PERIODE DE PVP ACTIVE !"
+
+  # Messages / Titles / ActionsBar pour la Vulnérabilité
+  vulne:
+    debut: "PERIODE DE VULNERABILITE DE 30 SECONDES !"
+    fin: "FIN DE LA PERIODE DE VULNERABILITE !"
+
+  # Messages / Titles / ActionsBar pour le début du jeu
+  start:
+    en-cours:
+      title1: "%timer%" # %timer% = le temps avant le lancement du jeu
+      subtitle1: " " # Possibilité de mettre aussi %timer% ici ( Pour custom le message )
+    lancer:
+      title2: "Lancement du jeu !"
+      subtitle2: "Bon jeu a vous !"
+
+  # Messages / Titles / ActionsBar pour la fin du jeu
+  winner:
+    broadcast: "Le joueur %winner% a gagne ! Bravo a lui !"
+    gagnant_title:
+      title: "Vous avez gagner !"
+      subtitle: "Bravo à vous !"
+
+
+
+bordure:
+  debut_de_jeu:
+    taille: 1500
+  fin:
+    taille: 50
+
+permissions:
+  host_command: "uhc.command.host"
+  host_command_say: "uhc.command.host.say"
+  host_command_start: "uhc.command.host.start"
