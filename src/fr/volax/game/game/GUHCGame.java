@@ -34,38 +34,37 @@ public class GUHCGame {
             // KITS
             // SCENARIOS
             // TEAM / PAS TEAM
-
+        }
             task = Bukkit.getScheduler().scheduleSyncRepeatingTask(GMain.getInstance(), () -> {
                 timer--;
+                for(UUID uuid : GMain.getInstance().playerInGame) {
+                    // fin vulnerabilité
+                    if(timer == GMain.getInstance().getConfig().getInt("game_time") - GMain.getInstance().getConfig().getInt("fin_vulne_time")){
+                        GUHCState.setState(GUHCState.GAME);
+                        GTitle.sendActionBar(player, GMain.getInstance().getConfig().getString("messages.vulne.fin").replaceAll("&","§"));
+                        player.sendMessage(GMain.getInstance().getConfig().getString("messages.vulne.fin").replaceAll("&","§"));
+                    }
 
-                // fin vulnerabilité
-                if(timer == GMain.getInstance().getConfig().getInt("game_time") - GMain.getInstance().getConfig().getInt("fin_vulne_time")){
-                    GUHCState.setState(GUHCState.GAME);
-                    GTitle.sendActionBar(player, GMain.getInstance().getConfig().getString("messages.vulne.fin").replaceAll("&","§"));
-                    player.sendMessage(GMain.getInstance().getConfig().getString("messages.vulne.fin").replaceAll("&","§"));
+                    // 30 secondes avant debut pvp
+                    if(timer == GMain.getInstance().getConfig().getInt("game_time") - GMain.getInstance().getConfig().getInt("debut_pvp") - 30){
+                        GTitle.sendActionBar(player, GMain.getInstance().getConfig().getString("messages.pvp.30").replaceAll("&","§"));
+                        player.sendMessage(GMain.getInstance().getConfig().getString("messages.pvp.30").replaceAll("&","§"));
+                    }
+
+                    // debut pvp
+                    if(timer == GMain.getInstance().getConfig().getInt("game_time") - GMain.getInstance().getConfig().getInt("debut_pvp")){
+                        GTitle.sendActionBar(player, GMain.getInstance().getConfig().getString("messages.pvp.debut").replaceAll("&","§"));
+                        player.sendMessage(GMain.getInstance().getConfig().getString("messages.pvp.debut").replaceAll("&","§"));
+                        GUHCState.setState(GUHCState.GAMEPVP);
+                        Bukkit.getWorld("world").setPVP(true);
+                    }
+
+                    // debut avancement bordure
+                    if(timer == GMain.getInstance().getConfig().getInt("game_time") - GMain.getInstance().getConfig().getInt("debut_bordure")){
+                        GBorder Bordure = new GBorder();
+                        Bordure.reduceBorder(timer);
+                    }
                 }
-
-                // 30 secondes avant debut pvp
-                if(timer == GMain.getInstance().getConfig().getInt("game_time") - GMain.getInstance().getConfig().getInt("debut_pvp") - 30){
-                    GTitle.sendActionBar(player, GMain.getInstance().getConfig().getString("messages.pvp.30").replaceAll("&","§"));
-                    player.sendMessage(GMain.getInstance().getConfig().getString("messages.pvp.30").replaceAll("&","§"));
-                }
-
-                // debut pvp
-                if(timer == GMain.getInstance().getConfig().getInt("game_time") - GMain.getInstance().getConfig().getInt("debut_pvp")){
-                    GTitle.sendActionBar(player, GMain.getInstance().getConfig().getString("messages.pvp.debut").replaceAll("&","§"));
-                    player.sendMessage(GMain.getInstance().getConfig().getString("messages.pvp.debut").replaceAll("&","§"));
-                    GUHCState.setState(GUHCState.GAMEPVP);
-                    Bukkit.getWorld("world").setPVP(true);
-                }
-
-                // debut avancement bordure
-                if(timer == GMain.getInstance().getConfig().getInt("game_time") - GMain.getInstance().getConfig().getInt("debut_bordure")){
-                    GBorder Bordure = new GBorder();
-                    Bordure.reduceBorder(timer);
-                }
-
             },20,20);
-        }
     }
 }
